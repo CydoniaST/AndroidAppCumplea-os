@@ -357,3 +357,4 @@ private fun getPuzzleDescription(puzzleNumber: Int): String {
         else -> "Resuelve este enigma cósmico para continuar tu aventura"
     }
 }
+

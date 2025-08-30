@@ -99,10 +99,10 @@ fun WelcomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(200.dp))
             
             Text(
-                text = "Bienvenida a tu",
+                text = "Espacio",
                 fontSize = 32.sp,
                 color = StarWhite,
                 fontWeight = FontWeight.Light,
@@ -111,7 +111,7 @@ fun WelcomeScreen(
             )
             
             Text(
-                text = "CUMPLEAÑOS",
+                text = "Profundo",
                 fontSize = 40.sp,
                 color = OrbitOrange,
                 fontWeight = FontWeight.Bold,
@@ -120,9 +120,10 @@ fun WelcomeScreen(
             )
             
             Spacer(modifier = Modifier.height(48.dp))
-            
+
+            Spacer(modifier = Modifier.weight(10f))
             Text(
-                text = "Toca la pantalla para comenzar tu aventura cósmica",
+                text = "Toca la pantalla para comenzar tu aventura",
                 fontSize = 16.sp,
                 color = CosmicBlue,
                 textAlign = TextAlign.Center,
@@ -173,7 +174,7 @@ private fun DrawScope.drawStars(stars: List<Star>, time: Float) {
 
 private fun DrawScope.drawBlackHole(center: Offset, time: Float) {
     // Agujero negro central
-    val blackHoleRadius = 80f
+    val blackHoleRadius = 120f
     
     // Gradiente del agujero negro
     drawCircle(
@@ -193,7 +194,7 @@ private fun DrawScope.drawBlackHole(center: Offset, time: Float) {
     // Centro del agujero negro
     drawCircle(
         color = Color.Black,
-        radius = blackHoleRadius * 0.3f,
+        radius = blackHoleRadius * 0.4f,
         center = center
     )
 }

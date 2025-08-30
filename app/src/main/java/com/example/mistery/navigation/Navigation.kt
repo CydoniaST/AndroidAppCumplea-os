@@ -35,10 +35,10 @@ fun Navigation(
                 }
             )
         }
-        
+
         composable(Screen.Puzzle.route) { backStackEntry ->
             val puzzleNumber = backStackEntry.arguments?.getString("puzzleNumber")?.toIntOrNull() ?: 1
-            
+
             PuzzleScreen(
                 puzzleNumber = puzzleNumber,
                 onNavigateToNext = {

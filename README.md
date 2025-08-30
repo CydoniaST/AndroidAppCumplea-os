@@ -1,6 +1,7 @@
-# 🌌 Cumpleaños Cósmico - Outer Wilds Birthday App
+![Badge en Desarollo](https://img.shields.io/badge/STATUS-En proceso-green)
+# 🌌 Aplicación para compleaños con tematica de Outer Wilds
 
-Una aplicación de Android con temática de **Outer Wilds** para celebrar cumpleaños con puzzles cósmicos y animaciones espaciales.
+Una aplicación de Android con temática de **Outer Wilds** para celebrar un cumpleaños, con puzles.
 
 ## 📱 Características
 
@@ -17,7 +18,6 @@ Una aplicación de Android con temática de **Outer Wilds** para celebrar cumple
   - **Puzzle 2**: Herramientas temporales (Rebobinar, Pausar, Avanzar)
   - **Puzzle 3**: Herramientas de exploración (Mapa, Scanner, Señal)
 - **Navegación fluida** entre puzzles
-- **Estructura preparada** para añadir lógica de puzzles personalizada
 
 ### 🎨 Diseño Temático
 - **Paleta de colores** inspirada en el espacio:
@@ -74,20 +74,6 @@ Button(
 ) { ... }
 ```
 
-## 🚀 Próximas Mejoras
-
-- [ ] Implementar lógica específica para cada puzzle
-- [ ] Añadir efectos de sonido espaciales
-- [ ] Implementar sistema de puntuación
-- [ ] Añadir más animaciones interactivas
-- [ ] Crear puzzles adicionales
-- [ ] Implementar guardado de progreso
-
-## 🎂 Temática de Cumpleaños
-
-La aplicación combina la celebración de cumpleaños con la fascinante temática espacial de Outer Wilds, creando una experiencia única que mezcla:
-- 🌌 Exploración cósmica
-- 🎁 Celebración de cumpleaños  
 - 🧩 Desafíos mentales
 - ✨ Efectos visuales impresionantes
 

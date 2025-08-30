@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cumpleaños Cósmico</string>
+    <string name="welcome_title">Bienvenida a tu Cumpleaños</string>
+    <string name="welcome_subtitle">Una aventura cósmica te espera</string>
+    <string name="tap_to_start">Toca la pantalla para comenzar tu aventura cósmica</string>
+    <string name="puzzle_title">Puzzle Cósmico</string>
+    <string name="back_button">Volver</string>
+    <string name="next_button">Siguiente</string>
+</resources>

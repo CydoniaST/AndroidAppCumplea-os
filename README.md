@@ -39,12 +39,13 @@ app/src/main/java/com/example/mistery/
 ├── navigation/
 │   └── Navigation.kt              # Sistema de navegación
 ├── screens/
-│   ├── WelcomeScreen.kt          # Pantalla de bienvenida con animaciones
-│   └── PuzzleScreen.kt           # Pantallas de puzzles
+│   ├── WelcomeScreen.kt           # Pantalla de bienvenida con animaciones
+│   ├── PuzzleScreen.kt            # Pantalla de puzzles
+│   └── PuzzleResultScreen.kt      # Pantalla de resultados de puzzles
 └── ui/theme/
-    ├── Color.kt                  # Colores temáticos
-    ├── Theme.kt                  # Tema de la aplicación
-    └── Type.kt                   # Tipografía
+    ├── Color.kt                   # Colores temáticos
+    ├── Theme.kt                   # Tema de la aplicación
+    └── Type.kt                    # Tipografía
 ```
 
 ## 🛠️ Tecnologías Utilizadas

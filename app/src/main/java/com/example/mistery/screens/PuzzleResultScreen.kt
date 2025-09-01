@@ -1,4 +1,3 @@
-// PuzzleResultScreen.kt
 package com.example.mistery.screens
 
 import androidx.compose.foundation.background
@@ -13,9 +12,9 @@ import androidx.compose.ui.unit.sp
 import com.example.mistery.ui.theme.*
 @Composable
 fun PuzzleResultScreen(
-    correctAnswer: String = "42", // respuesta correcta
-    onCorrect: () -> Unit,        // si es correcta → siguiente puzzle
-    onIncorrect: () -> Unit       // si es incorrecta → volver al puzzle 1
+    correctAnswer: String = "42",
+    onCorrect: () -> Unit,
+    onIncorrect: () -> Unit
 ) {
     var userAnswer by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
@@ -50,7 +49,7 @@ fun PuzzleResultScreen(
                 if (userAnswer.trim() == correctAnswer) {
                     onCorrect()
                 } else {
-                    showError = true // solo mostramos el popup
+                    showError = true
                 }
             },
             colors = ButtonDefaults.buttonColors(
@@ -61,15 +60,15 @@ fun PuzzleResultScreen(
         }
     }
 
-    // Pop-up cuando la respuesta es incorrecta
+
     if (showError) {
         AlertDialog(
-            onDismissRequest = { /* no hacer nada, solo cerrar con botón */ },
+            onDismissRequest = { },
             confirmButton = {
                 Button(
                     onClick = {
                         showError = false
-                        onIncorrect() // ahora sí volvemos al puzzle 1
+                        onIncorrect()
                     }
                 ) {
                     Text("Aceptar")

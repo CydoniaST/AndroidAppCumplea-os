@@ -1,4 +1,3 @@
-// PuzzleScreen.kt
 package com.example.mistery.screens
 
 import androidx.compose.foundation.background
@@ -21,6 +20,8 @@ fun PuzzleScreen(
     onNavigateToResult: () -> Unit
 ) {
     var showIntro by remember { mutableStateOf(true) }
+
+    SpaceBackground()
 
     Column(
         modifier = Modifier

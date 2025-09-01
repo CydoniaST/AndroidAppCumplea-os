@@ -1,6 +1,6 @@
 ![Badge en Desarrollo](https://img.shields.io/badge/STATUS-En%20desarrollo-green)
 
-Proyecto personal para un cumpleaños
+# Proyecto personal para un cumpleaños
 
 Esta aplicación de Android tendrá temática de **Outer Wilds** y se basa en resolver puzles.
 

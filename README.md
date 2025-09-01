@@ -8,9 +8,9 @@ Esta aplicación de Android tendrá temática de **Outer Wilds** y se basa en re
 
 ### ✨ Pantalla de Bienvenida
 - **Animación de agujero negro** con partículas orbitando
-- **Campo de estrellas animadas** con efecto de parpadeo
-- **Texto de bienvenida** con animaciones suaves
-- **Tema espacial** inspirado en Outer Wilds
+- **Campo de estrellas animadas**
+- **Texto de bienvenida** 
+- **Tema** inspirado en Outer Wilds
 
 ### 🧩 Sistema de Puzzles
 - **Múltiples pantallas de puzzles** con diferentes temáticas
@@ -28,8 +28,6 @@ Esta aplicación de Android tendrá temática de **Outer Wilds** y se basa en re
   - `OrbitOrange`: Naranja orbital
   - `CosmicBlue`: Azul cósmico
   - `TimeLoopGreen`: Verde temporal
-- **Gradientes cósmicos** y efectos visuales
-- **Experiencia inmersiva** con pantalla completa
 
 ## 📁 Estructura del Proyecto
 

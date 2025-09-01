@@ -1,8 +1,8 @@
 ![Badge en Desarrollo](https://img.shields.io/badge/STATUS-En%20desarrollo-green)
 
-# 🌌 Aplicación para compleaños con tematica de Outer Wilds
+Proyecto personal para un cumpleaños
 
-Una aplicación de Android con temática de **Outer Wilds** para celebrar un cumpleaños, con puzles.
+Esta aplicación de Android tendrá temática de **Outer Wilds** y se basa en resolver puzles.
 
 ## 📱 Características
 

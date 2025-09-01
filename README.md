@@ -62,22 +62,6 @@ app/src/main/java/com/example/mistery/
 2. **Puzzles**: Cada puzzle tiene herramientas específicas preparadas para implementar lógica personalizada
 3. **Navegación**: Usa los botones "Volver" y "Siguiente" para moverte entre puzzles
 
-## 🔧 Personalización de Puzzles
-
-Para añadir lógica a los puzzles, modifica las funciones en `PuzzleScreen.kt`:
-
-```kotlin
-// En ToolButton component
-Button(
-    onClick = { 
-        // Aquí irá la lógica específica del puzzle
-        // Ejemplo: cuando se resuelva, llamar onNavigateToNext()
-    }
-) { ... }
-```
-
-- 🧩 Desafíos mentales
-- ✨ Efectos visuales impresionantes
 
 ¡Disfruta explorando el cosmos en tu día especial! 🎉👨‍🚀
 

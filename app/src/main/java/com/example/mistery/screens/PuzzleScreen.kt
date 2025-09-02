@@ -1,5 +1,6 @@
 package com.example.mistery.screens
 
+import PuzzleLevelOne
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -64,13 +65,7 @@ fun PuzzleScreen(
                             textAlign = TextAlign.Center
                         )
                     } else {
-                        Text(
-                            text = "Aquí aparecerá el puzzle del nivel 1 🧩",
-                            fontSize = 22.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = TimeLoopGreen,
-                            textAlign = TextAlign.Center
-                        )
+                        PuzzleLevelOne()
                     }
                 } else {
                     Text(

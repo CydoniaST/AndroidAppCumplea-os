@@ -58,4 +58,4 @@ app/src/main/java/com/example/mistery/
 
 1. **Pantalla de Bienvenida**: Toca en cualquier parte de la pantalla para comenzar
 2. **Puzzles**: Cada puzzle tiene herramientas específicas preparadas para implementar lógica personalizada
-3. **Navegación**: Usa los botones "Volver" y "Siguiente" para moverte entre puzzles
+3. **Navegación**: Usa los botones "Volver" y "Siguiente" para moverte entre puzzles. También en algunos casos tocando la pantalla.

@@ -21,18 +21,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
-
 @Composable
 fun InicioConsolaScreen(
-    onNextPuzzle: () -> Unit
+    onNuevaCarta: () -> Unit,
+    onNextPuzzle: () -> Unit,
+    onBack: () -> Unit
 ) {
     var showFinalText by remember { mutableStateOf(false) }
 
-    // Cambia el texto después de 3 segundos
     LaunchedEffect(Unit) {
         delay(3000)
         showFinalText = true
     }
+
 
     val infiniteTransition = rememberInfiniteTransition(label = "hudAnim")
 
@@ -75,6 +76,8 @@ fun InicioConsolaScreen(
             .background(Color(0xFF001018)),
         contentAlignment = Alignment.Center
     ) {
+
+
         Canvas(modifier = Modifier.fillMaxSize()) {
             val glowColor = Color.Cyan.copy(alpha = glowAlpha)
 
@@ -115,42 +118,80 @@ fun InicioConsolaScreen(
             }
         }
 
-        // Texto en pantalla
         if (!showFinalText) {
+            // Texto animado con puntos suspensivos
+            var dotCount by remember { mutableStateOf(0) }
+            LaunchedEffect(Unit) {
+                while (true) {
+                    dotCount = (dotCount + 1) % 4
+                    delay(500)
+                }
+            }
+            val dots = ".".repeat(dotCount)
             Text(
-                text = "Iniciando Consola...",
+                text = "Iniciando Consola$dots",
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Green,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.Center)
             )
         } else {
-            Box(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .shadow(8.dp, RoundedCornerShape(12.dp))
-                    .background(Color(0xFF001822).copy(alpha = 0.85f), RoundedCornerShape(12.dp))
-                    .border(2.dp, Color.Cyan, RoundedCornerShape(12.dp))
-                    .clickable { onNextPuzzle() }
-                    .padding(24.dp),
-                contentAlignment = Alignment.Center
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Nueva Carta Disponible",
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Color.Cyan,
-                    textAlign = TextAlign.Center
-                )
+
+                BackButton(onBack = onBack)
+                Box(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .shadow(8.dp, RoundedCornerShape(12.dp))
+                        .background(
+                            Color(0xFF001822).copy(alpha = 0.85f),
+                            RoundedCornerShape(12.dp)
+                        )
+                        .border(2.dp, Color.Cyan, RoundedCornerShape(12.dp))
+                        .clickable { onNuevaCarta() }
+                        .padding(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Nueva Carta Disponible",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.Cyan,
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+                // 🔹 Botón Señal
+                Box(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .shadow(8.dp, RoundedCornerShape(12.dp))
+                        .background(
+                            Color(0xFF001822).copy(alpha = 0.85f),
+                            RoundedCornerShape(12.dp)
+                        )
+                        .border(2.dp, Color.Magenta, RoundedCornerShape(12.dp))
+                        .clickable { onNextPuzzle() }
+                        .padding(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Señal del espacio profundo recibida",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.Magenta,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewInicioConsolaScreen() {
-    InicioConsolaScreen(
-        onNextPuzzle = {}
-    )
-}
+
+

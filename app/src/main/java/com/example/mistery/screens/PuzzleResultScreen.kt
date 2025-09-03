@@ -20,7 +20,8 @@ import com.example.mistery.ui.theme.*
 fun PuzzleResultScreen(
     correctAnswer: Int = 21091999,
     onCorrect: () -> Unit,
-    onIncorrect: () -> Unit
+    onIncorrect: () -> Unit,
+    onBack: () -> Unit
 ) {
     // El usuario escribe texto, lo guardamos como String
     var userAnswer by remember { mutableStateOf("") }
@@ -34,6 +35,8 @@ fun PuzzleResultScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        BackButton(onBack = onBack)
+
         Text("Código de activación:", fontSize = 20.sp, color = StarWhite)
 
         Spacer(Modifier.height(16.dp))
@@ -94,6 +97,7 @@ fun PuzzleResultScreen(
 private fun PreviewPuzzleResultScreen() {
     PuzzleResultScreen(
         onCorrect = {},
-        onIncorrect = {}
+        onIncorrect = {},
+        onBack = {}
     )
 }

@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mistery.screens.InicioConsolaScreen
+import com.example.mistery.screens.NuevaCartaScreen
 import com.example.mistery.screens.PuzzleResultScreen
 import com.example.mistery.screens.PuzzleScreen
 import com.example.mistery.screens.WelcomeScreen
@@ -19,6 +20,7 @@ sealed class Screen(val route: String) {
         fun createRoute(puzzleNumber: Int) = "puzzle/result/$puzzleNumber"
     }
     object InicioConsola : Screen("InicioConsola")
+    object NuevaCarta : Screen("nuevaCarta")   //
 }
 
 @Composable
@@ -52,7 +54,8 @@ fun Navigation(
                 puzzleNumber = puzzleNumber,
                 onNavigateToResult = {
                     navController.navigate(Screen.PuzzleResult.createRoute(puzzleNumber))
-                }
+                },
+                onBack = { navController.popBackStack() }
             )
         }
 
@@ -72,17 +75,22 @@ fun Navigation(
                     navController.navigate(Screen.Puzzle.createRoute(1)) {
                         popUpTo(0) { inclusive = true }
                     }
-                }
+                },
+                onBack = { navController.popBackStack() }
             )
         }
+        // InicioConsola con dos opciones
         composable(Screen.InicioConsola.route) {
             InicioConsolaScreen(
-                onNextPuzzle = {
-                    navController.navigate(Screen.Puzzle.createRoute(2)) {
-
-                    }
-                }
+                onNuevaCarta = { navController.navigate(Screen.NuevaCarta.route) },
+                onNextPuzzle = { navController.navigate(Screen.Puzzle.createRoute(2)) },
+                onBack = { navController.popBackStack() }
             )
+        }
+
+        // Nueva Carta (pantalla vacía con botón volver)
+        composable(Screen.NuevaCarta.route) {
+            NuevaCartaScreen(onBack = { navController.popBackStack() })
         }
 
     }

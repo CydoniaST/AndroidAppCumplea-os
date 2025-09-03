@@ -4,22 +4,27 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlin.math.roundToInt
 import com.example.mistery.R
+import com.example.mistery.ui.theme.StarWhite
+import kotlin.math.roundToInt
+
 @SuppressLint("ResourceType")
 @Composable
 fun PuzzleLevelOne() {
@@ -37,7 +42,7 @@ fun PuzzleLevelOne() {
         Entrada X-039899
     """.trimIndent()
 
-    // Estados de cada canvas
+
     var offsetX1 by remember { mutableStateOf(0f) }
     var offsetY1 by remember { mutableStateOf(0f) }
 
@@ -48,24 +53,21 @@ fun PuzzleLevelOne() {
 
     Box(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .padding(8.dp)
             .background(
-                Brush.verticalGradient(
-                    listOf(
-                        Color(0xFFd2b48c), // pergamino
-                        Color(0xFFa67c52)  // marrón envejecido
-                    )
-                )
+                color = androidx.compose.ui.graphics.Color.Black.copy(alpha = 0.6f), // 🔹 blanco semitransparente
+                shape = RoundedCornerShape(16.dp)
             )
-            .padding(24.dp),
-        contentAlignment = Alignment.Center
+            .padding(16.dp)
     ) {
+
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = baseText,
                 fontSize = 18.sp,
                 lineHeight = 26.sp,
-                color = Color(0xFF2d1b0d),
+                color = StarWhite,
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -83,7 +85,7 @@ fun PuzzleLevelOne() {
         }
 
         if (showMask) {
-            // ---------- CANVAS 1 ----------
+
             Canvas(
                 modifier = Modifier
                     .offset { IntOffset(offsetX1.roundToInt(), offsetY1.roundToInt()) }
@@ -104,7 +106,7 @@ fun PuzzleLevelOne() {
                     cornerRadius = CornerRadius(32f, 32f)
                 )
 
-                // Agujeros de la parte superior
+
                 val holePositions1 = listOf(
                     Offset(280f, 35f),   // 2
                     Offset(320f, 35f),   // 1
@@ -122,7 +124,7 @@ fun PuzzleLevelOne() {
                 }
             }
 
-            // ---------- CANVAS 2 ----------
+
             Canvas(
                 modifier = Modifier
                     .offset { IntOffset(offsetX2.roundToInt(), offsetY2.roundToInt()) }
@@ -143,7 +145,7 @@ fun PuzzleLevelOne() {
                     cornerRadius = CornerRadius(32f, 32f)
                 )
 
-                // Agujeros de la parte inferior
+
                 val holePositions2 = listOf(
 
                     Offset(300f, 580f),  // 9

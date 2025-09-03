@@ -123,7 +123,7 @@ fun WelcomeScreen(
 
             Spacer(modifier = Modifier.weight(10f))
             Text(
-                text = "Toca la pantalla para comenzar tu aventura",
+                text = "Toca la pantalla",
                 fontSize = 16.sp,
                 color = CosmicBlue,
                 textAlign = TextAlign.Center,

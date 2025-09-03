@@ -59,7 +59,7 @@ fun PuzzleScreen(
                 if (puzzleNumber == 1) {
                     if (showIntro) {
                         Text(
-                            text = "Aquí podrás escribir lo que quieras más adelante.\n\n(Toca la pantalla para continuar)",
+                            text = "Eres la capitana de la nave Outer y te encuentras en el espacio profundo con el objetivo de encontrar civilizaciones inteligentes. \n \n Hace unos días sufristeis un accidente por culpa de un asteroide y justo te toca solucionarlo el dia de tu cumpleaños, asique decides ir al puente y ver el diario de abordo antes de ponerte en marcha.",
                             fontSize = 18.sp,
                             color = StarWhite,
                             textAlign = TextAlign.Center

@@ -27,20 +27,24 @@ fun PuzzleLevelOne() {
         Diario del 12-10-2190
         
         Es mi cumpleaños y estamos perdidos en el espacio profundo. 
-        Estoy aqui sentada con mi tarta y esperando a que Erik acabe de calibrar 
+        Estoy aqui sentada con mi tarta y esperando a que Riebeck acabe de calibrar 
         los radares de la nave.
-        Y es que hace ya 1 mes que partimos de la tierra 
-        para buscar una solucion para la Tierra. 
+        Y es que hace ya 1 mes que partimos de la Tierra en busca de vida, hemos recorrido miles de años luz pero no hemos encontrado nada aún. 
         
-        Hay que darse prisa, pero no encuentro el codigo de activación 
+        Primero debo reiniciar la nave despues de lso arreglos que hemos hecho, pero no encuentro el codigo de activación 
         de la consola principal.      
         
-        Entrada x-039899
+        Entrada X-039899
     """.trimIndent()
 
-    var offsetX by remember { mutableStateOf(0f) }
-    var offsetY by remember { mutableStateOf(0f) }
-    var showMask by remember { mutableStateOf(false) } // control de visibilidad del Canvas
+    // Estados de cada canvas
+    var offsetX1 by remember { mutableStateOf(0f) }
+    var offsetY1 by remember { mutableStateOf(0f) }
+
+    var offsetX2 by remember { mutableStateOf(0f) }
+    var offsetY2 by remember { mutableStateOf(0f) }
+
+    var showMask by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -57,7 +61,6 @@ fun PuzzleLevelOne() {
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            // Texto del diario
             Text(
                 text = baseText,
                 fontSize = 18.sp,
@@ -68,7 +71,6 @@ fun PuzzleLevelOne() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Botón para mostrar/ocultar la máscara
             IconButton(
                 onClick = { showMask = !showMask },
                 modifier = Modifier.size(64.dp)
@@ -80,22 +82,21 @@ fun PuzzleLevelOne() {
             }
         }
 
-        // Solo dibujar el canvas si showMask == true
         if (showMask) {
+            // ---------- CANVAS 1 ----------
             Canvas(
                 modifier = Modifier
-                    .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                    .size(320.dp, 620.dp)
+                    .offset { IntOffset(offsetX1.roundToInt(), offsetY1.roundToInt()) }
+                    .size(320.dp, 300.dp) // la mitad superior
                     .graphicsLayer(alpha = 0.99f)
                     .pointerInput(Unit) {
                         detectDragGestures { change, dragAmount ->
                             change.consume()
-                            offsetX += dragAmount.x
-                            offsetY += dragAmount.y
+                            offsetX1 += dragAmount.x
+                            offsetY1 += dragAmount.y
                         }
                     }
             ) {
-                // Fondo negro
                 drawRoundRect(
                     color = Color.Black.copy(alpha = 0.85f),
                     topLeft = Offset.Zero,
@@ -103,28 +104,53 @@ fun PuzzleLevelOne() {
                     cornerRadius = CornerRadius(32f, 32f)
                 )
 
-                // Agujeros sobre los números clave
-                val holePositions = listOf(
+                // Agujeros de la parte superior
+                val holePositions1 = listOf(
                     Offset(280f, 35f),   // 2
                     Offset(320f, 35f),   // 1
-                    Offset(350f, 35f),  // 0
-                    Offset(450f, 35f),  // 9
-                    Offset(420f, 590f),  // 1
-                    Offset(300f, 1280f),  // 9
-                    Offset(370f, 1280f),  // 9
-                    Offset(390f, 1280f)   // 9
+                    Offset(350f, 35f),   // 0
+                    Offset(450f, 35f),   // 9
+                    Offset(420f, 590f)  // 1
                 )
-                val starPath = Path().apply {
-                    star(center = Offset(4500f, 1400f), radius = 30f)
+                holePositions1.forEach { pos ->
+                    drawCircle(
+                        color = Color.Transparent,
+                        radius = 20f,
+                        center = pos,
+                        blendMode = BlendMode.Clear
+                    )
                 }
+            }
 
-                drawPath(
-                    path = starPath,
-                    color = Color.Yellow,
-                    style = Fill
+            // ---------- CANVAS 2 ----------
+            Canvas(
+                modifier = Modifier
+                    .offset { IntOffset(offsetX2.roundToInt(), offsetY2.roundToInt()) }
+                    .size(320.dp, 300.dp) // la mitad inferior
+                    .graphicsLayer(alpha = 0.99f)
+                    .pointerInput(Unit) {
+                        detectDragGestures { change, dragAmount ->
+                            change.consume()
+                            offsetX2 += dragAmount.x
+                            offsetY2 += dragAmount.y
+                        }
+                    }
+            ) {
+                drawRoundRect(
+                    color = Color.Black.copy(alpha = 0.85f),
+                    topLeft = Offset.Zero,
+                    size = size,
+                    cornerRadius = CornerRadius(32f, 32f)
                 )
 
-                holePositions.forEach { pos ->
+                // Agujeros de la parte inferior
+                val holePositions2 = listOf(
+
+                    Offset(300f, 580f),  // 9
+                    Offset(370f, 580f),  // 9
+                    Offset(390f, 580f)   // 9
+                )
+                holePositions2.forEach { pos ->
                     drawCircle(
                         color = Color.Transparent,
                         radius = 20f,
@@ -135,23 +161,4 @@ fun PuzzleLevelOne() {
             }
         }
     }
-
-}
-fun Path.star(center: Offset, radius: Float, points: Int = 5) {
-    val angle = (2.0 * Math.PI / points).toFloat()
-    val halfAngle = angle / 2f
-
-    moveTo(
-        (center.x + radius * kotlin.math.cos(0.0)).toFloat(),
-        (center.y + radius * kotlin.math.sin(0.0)).toFloat()
-    )
-
-    for (i in 1 until points * 2) {
-        val r = if (i % 2 == 0) radius else radius / 2
-        val x = center.x + r * kotlin.math.cos(i * halfAngle.toDouble())
-        val y = center.y + r * kotlin.math.sin(i * halfAngle.toDouble())
-        lineTo(x.toFloat(), y.toFloat())
-    }
-
-    close()
 }

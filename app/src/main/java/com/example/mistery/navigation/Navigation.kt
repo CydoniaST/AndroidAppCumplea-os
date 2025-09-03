@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.mistery.screens.InicioConsolaScreen
 import com.example.mistery.screens.PuzzleResultScreen
 import com.example.mistery.screens.PuzzleScreen
 import com.example.mistery.screens.WelcomeScreen
@@ -17,6 +18,7 @@ sealed class Screen(val route: String) {
     object PuzzleResult : Screen("puzzle/result/{puzzleNumber}") {
         fun createRoute(puzzleNumber: Int) = "puzzle/result/$puzzleNumber"
     }
+    object InicioConsola : Screen("InicioConsola")
 }
 
 @Composable
@@ -60,20 +62,10 @@ fun Navigation(
                 backStackEntry.arguments?.getString("puzzleNumber")?.toIntOrNull() ?: 1
 
             PuzzleResultScreen(
-                correctAnswer = "42", // Aquí defines la solución correcta
+                correctAnswer = 21091999,
                 onCorrect = {
-                    val nextPuzzle = puzzleNumber + 1
-                    if (nextPuzzle <= 3) {
-                        navController.navigate(Screen.Puzzle.createRoute(nextPuzzle)) {
-                            popUpTo(Screen.Puzzle.createRoute(puzzleNumber)) {
-                                inclusive = true
-                            }
-                        }
-                    } else {
-                        // Si se acaban los puzzles, volver al inicio
-                        navController.navigate(Screen.Welcome.route) {
-                            popUpTo(0) { inclusive = true }
-                        }
+                    navController.navigate(Screen.InicioConsola.route) {
+                        popUpTo(Screen.Welcome.route) { inclusive = true }
                     }
                 },
                 onIncorrect = {
@@ -83,5 +75,15 @@ fun Navigation(
                 }
             )
         }
+        composable(Screen.InicioConsola.route) {
+            InicioConsolaScreen(
+                onNextPuzzle = {
+                    navController.navigate(Screen.Puzzle.createRoute(2)) {
+
+                    }
+                }
+            )
+        }
+
     }
 }

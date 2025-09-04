@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,7 +30,7 @@ fun ConfettiScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black), // se sustituirá con tu imagen
+            .background(Color.Black),
         contentAlignment = Alignment.Center
     ) {
 

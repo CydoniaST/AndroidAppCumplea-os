@@ -112,7 +112,7 @@ fun PuzzleLevelOne() {
                     Offset(320f, 35f),   // 1
                     Offset(350f, 35f),   // 0
                     Offset(450f, 35f),   // 9
-                    Offset(420f, 590f)  // 1
+                    Offset(410f, 585f)  // 1
                 )
                 holePositions1.forEach { pos ->
                     drawCircle(

@@ -52,7 +52,6 @@ fun PuzzleLevelTwo(navController: NavController) {
             colorFilter = colorFilter
         )
 
-        // Texto
         Text(
             text = currentText,
             fontSize = 18.sp,
@@ -60,7 +59,6 @@ fun PuzzleLevelTwo(navController: NavController) {
             modifier = Modifier.padding(16.dp)
         )
 
-        // Botones
         Column(
             modifier = Modifier
                 .fillMaxWidth()

@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
@@ -37,7 +36,7 @@ fun InicioConsolaScreen(
 
     val infiniteTransition = rememberInfiniteTransition(label = "hudAnim")
 
-    // Pulso de brillo en los bordes
+
     val glowAlpha by infiniteTransition.animateFloat(
         initialValue = 0.3f,
         targetValue = 1f,
@@ -48,7 +47,7 @@ fun InicioConsolaScreen(
         label = "glowAlpha"
     )
 
-    // Línea de escaneo que baja
+
     val scanOffset by infiniteTransition.animateFloat(
         initialValue = -300f,
         targetValue = 300f,
@@ -59,7 +58,7 @@ fun InicioConsolaScreen(
         label = "scanLine"
     )
 
-    // Progreso para las ondas múltiples
+
     val baseProgress by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
@@ -81,7 +80,7 @@ fun InicioConsolaScreen(
         Canvas(modifier = Modifier.fillMaxSize()) {
             val glowColor = Color.Cyan.copy(alpha = glowAlpha)
 
-            // Marco rectangular estilo HUD
+
             drawRect(
                 brush = Brush.linearGradient(
                     listOf(glowColor, Color.Transparent, glowColor)
@@ -90,7 +89,7 @@ fun InicioConsolaScreen(
                 size = size
             )
 
-            // Línea de escaneo
+
             drawLine(
                 color = Color.Cyan.copy(alpha = 0.4f),
                 start = Offset(0f, size.height / 2 + scanOffset),
@@ -98,7 +97,7 @@ fun InicioConsolaScreen(
                 strokeWidth = 2f
             )
 
-            // Ondas concéntricas múltiples (3 círculos desfasados)
+
             val center = Offset(size.width / 2, size.height / 2)
             val maxRadius = size.minDimension / 2.2f
             val waveCount = 3
@@ -119,7 +118,7 @@ fun InicioConsolaScreen(
         }
 
         if (!showFinalText) {
-            // Texto animado con puntos suspensivos
+
             var dotCount by remember { mutableStateOf(0) }
             LaunchedEffect(Unit) {
                 while (true) {
@@ -166,7 +165,6 @@ fun InicioConsolaScreen(
                     )
                 }
 
-                // 🔹 Botón Señal
                 Box(
                     modifier = Modifier
                         .padding(16.dp)

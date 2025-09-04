@@ -42,7 +42,7 @@ fun PuzzleLevelTwo(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        // Imagen de fondo con filtro
+
         Image(
             painter = painterResource(id = R.drawable.puzzle_background),
             contentDescription = "Puzzle Image",
@@ -75,7 +75,7 @@ fun PuzzleLevelTwo(navController: NavController) {
                     Text("Verde")
                 }
                 Button(onClick = { colorFilter = whiteFilter() }) {
-                    Text("Reestablecer")
+                    Text("Blanco")
                 }
                 Button(onClick = { colorFilter = redFilter() }) {
                     Text("Rojo")

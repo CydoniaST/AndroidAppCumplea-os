@@ -36,7 +36,7 @@ fun PuzzleLevelOne() {
         los radares de la nave.
         Y es que hace ya 1 mes que partimos de la Tierra en busca de vida, hemos recorrido miles de años luz pero no hemos encontrado nada aún. 
         
-        Primero debo reiniciar la nave despues de lso arreglos que hemos hecho, pero no encuentro el codigo de activación 
+        Ahora que todo esta en orden hay que reiniciar la consola de la nave, pero no encuentro el codigo de activación 
         de la consola principal.      
         
         Entrada X-039899

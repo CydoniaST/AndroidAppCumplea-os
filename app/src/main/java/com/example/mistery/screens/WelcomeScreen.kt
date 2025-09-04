@@ -102,7 +102,7 @@ fun WelcomeScreen(
             Spacer(modifier = Modifier.height(200.dp))
             
             Text(
-                text = "Espacio",
+                text = "No se que poner de",
                 fontSize = 32.sp,
                 color = StarWhite,
                 fontWeight = FontWeight.Light,
@@ -111,7 +111,7 @@ fun WelcomeScreen(
             )
             
             Text(
-                text = "Profundo",
+                text = "Titulo",
                 fontSize = 40.sp,
                 color = OrbitOrange,
                 fontWeight = FontWeight.Bold,

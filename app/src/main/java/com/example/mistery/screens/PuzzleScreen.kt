@@ -94,7 +94,7 @@ fun PuzzleScreen(
                                 .padding(16.dp)
                         ) {
                             Text(
-                                text = "Eres la capitana de la nave Outer y te encuentras en el espacio profundo con el objetivo de encontrar civilizaciones inteligentes. \n Hace unos días sufristeis un accidente por culpa de un asteroide y justo te toca solucionarlo el dia de tu cumpleaños, asique decides ir al puente y ver el diario de abordo antes de ponerte en marcha.",
+                                    text = "Eres la capitana de la nave Outer y te encuentras en el espacio profundo con el objetivo de encontrar civilizaciones inteligentes. \n Es el dia de tu cumpleaños, asique te levantas, sales de tu habitación y vas al puente para revisar tu diario de abordo antes de ponerte en marcha.",
                                 fontSize = 18.sp,
                                 color = StarWhite,
                                 textAlign = TextAlign.Center
@@ -116,7 +116,7 @@ fun PuzzleScreen(
                                 .padding(16.dp)
                         ) {
                             Text(
-                                text = "Por fin funciona la nave y podeis continuar con vuestro viaje, pero miras la consola y ves que a llegado una señal extraña que procede de muy lejos.",
+                                text = "La nave se ha puesto en marcha y todos los sistemas se han activado, asique ya podeis continuar con vuestro viaje, pero miras la consola y ves que ha llegado una señal extraña que procede de muy lejos.",
                                 fontSize = 18.sp,
                                 color = StarWhite,
                                 textAlign = TextAlign.Center

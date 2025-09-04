@@ -10,12 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.mistery.navigation.Screen
+
 
 @Composable
 fun TranslatorScreen(navController: NavController) {
     var russianText by remember { mutableStateOf("") }
     var translatedText by remember { mutableStateOf("") }
+    var isTranslating by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -32,23 +33,37 @@ fun TranslatorScreen(navController: NavController) {
             onValueChange = { russianText = it },
             label = { Text("Escribe en ruso") },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text
-            )
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = {
-            // Aquí deberías integrar una API real de traducción (ej: Google Translate API)
-            translatedText = "Traducción simulada: $russianText"
-        }) {
+        Button(
+            onClick = {
+                if (russianText.isNotBlank()) {
+                    isTranslating = true
+                    TranslatorHelper.translate(
+                        text = russianText,
+                        onResult = {
+                            translatedText = it
+                            isTranslating = false
+                        },
+                        onError = {
+                            translatedText = "Error al traducir"
+                            isTranslating = false
+                        }
+                    )
+                }
+            }
+        ) {
             Text("Traducir")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text("Resultado: $translatedText")
+        Text(
+            text = if (isTranslating) "Traduciendo..." else "Resultado: $translatedText"
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 

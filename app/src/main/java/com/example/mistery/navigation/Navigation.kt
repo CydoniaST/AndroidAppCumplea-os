@@ -13,6 +13,9 @@ import com.example.mistery.screens.PuzzleScreen
 import com.example.mistery.screens.TranslatorScreen
 import com.example.mistery.screens.WelcomeScreen
 import com.example.mistery.R
+import com.example.mistery.screens.ConfettiScreen
+
+
 sealed class Screen(val route: String) {
     object Welcome : Screen("welcome")
     object Puzzle : Screen("puzzle/{puzzleNumber}") {
@@ -24,6 +27,7 @@ sealed class Screen(val route: String) {
     object InicioConsola : Screen("InicioConsola")
     object NuevaCarta : Screen("nuevaCarta")
     object Translator : Screen("translator")
+    object Final : Screen("PantallaFinal")
 }
 
 @Composable
@@ -122,6 +126,9 @@ fun Navigation(
             val stickerResId = backStackEntry.arguments?.getString("stickerResId")?.toIntOrNull() ?: 0
             PuzzleLevelThree(navController = navController, stickerResId = stickerResId)
         }
+
+        composable("final") {ConfettiScreen(navController) }
+        composable("final2") {navController.navigate(Screen.Final.route) }
 
     }
 }

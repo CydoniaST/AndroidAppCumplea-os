@@ -30,7 +30,7 @@ fun PuzzleLevelThree(navController: NavController, stickerResId: Int? = null) {
         "👽: Que es eso. ",
         "👽: Una imagen terricola bien rara.",
         "👽: Como regalo queremos darte un codigo que te llevara a los secretos de la galaxia.",
-        "👽: 123",
+        "👽: 023",
         "👽: Usalo sabiamente",
         "👩‍🚀: Muchas gracias aliensitos.",
         "👩‍🚀: Lo usaré con sabiduria, Besis.",
@@ -103,7 +103,7 @@ fun PuzzleLevelThree(navController: NavController, stickerResId: Int? = null) {
         Spacer(Modifier.height(24.dp))
 
         Button(
-            onClick = { navController.navigate("puzzle/result/3") },
+            onClick = { navController.navigate("final") },
             colors = ButtonDefaults.buttonColors(containerColor = CosmicBlue),
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {

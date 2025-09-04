@@ -148,7 +148,7 @@ fun PuzzleLevelOne() {
 
                 val holePositions2 = listOf(
 
-                    Offset(300f, 580f),  // 9
+                    Offset(315f, 580f),  // 9
                     Offset(370f, 580f),  // 9
                     Offset(390f, 580f)   // 9
                 )

@@ -7,10 +7,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mistery.screens.InicioConsolaScreen
 import com.example.mistery.screens.NuevaCartaScreen
+import com.example.mistery.screens.PuzzleLevelThree
 import com.example.mistery.screens.PuzzleResultScreen
 import com.example.mistery.screens.PuzzleScreen
+import com.example.mistery.screens.TranslatorScreen
 import com.example.mistery.screens.WelcomeScreen
-
+import com.example.mistery.R
 sealed class Screen(val route: String) {
     object Welcome : Screen("welcome")
     object Puzzle : Screen("puzzle/{puzzleNumber}") {
@@ -20,12 +22,14 @@ sealed class Screen(val route: String) {
         fun createRoute(puzzleNumber: Int) = "puzzle/result/$puzzleNumber"
     }
     object InicioConsola : Screen("InicioConsola")
-    object NuevaCarta : Screen("nuevaCarta")   //
+    object NuevaCarta : Screen("nuevaCarta")
+    object Translator : Screen("translator")
 }
 
 @Composable
 fun Navigation(
     navController: NavHostController = rememberNavController()
+
 ) {
     NavHost(
         navController = navController,
@@ -45,7 +49,6 @@ fun Navigation(
             )
         }
 
-        // Pantalla de puzzle
         composable(Screen.Puzzle.route) { backStackEntry ->
             val puzzleNumber =
                 backStackEntry.arguments?.getString("puzzleNumber")?.toIntOrNull() ?: 1
@@ -55,9 +58,11 @@ fun Navigation(
                 onNavigateToResult = {
                     navController.navigate(Screen.PuzzleResult.createRoute(puzzleNumber))
                 },
-                onBack = { navController.popBackStack() }
+                onBack = { navController.popBackStack() },
+                navController = navController
             )
         }
+
 
         // Pantalla de resultado del puzzle
         composable(Screen.PuzzleResult.route) { backStackEntry ->
@@ -65,21 +70,38 @@ fun Navigation(
                 backStackEntry.arguments?.getString("puzzleNumber")?.toIntOrNull() ?: 1
 
             PuzzleResultScreen(
-                correctAnswer = 21091999,
+                puzzleNumber = puzzleNumber,
                 onCorrect = {
-                    navController.navigate(Screen.InicioConsola.route) {
-                        popUpTo(Screen.Welcome.route) { inclusive = true }
+                    when (puzzleNumber) {
+                        1 -> {
+
+                            navController.navigate(Screen.InicioConsola.route) {
+                                popUpTo(Screen.Welcome.route) { inclusive = true }
+                            }
+                        }
+                        2 -> {
+
+                            navController.navigate(Screen.Puzzle.createRoute(3)) {
+                                popUpTo(Screen.Puzzle.route) { inclusive = false }
+                            }
+                        }
+                        else -> {
+                            navController.navigate(Screen.Puzzle.createRoute(3)) {
+                                popUpTo(Screen.Puzzle.route) { inclusive = false }
+                            }
+                        }
                     }
                 },
                 onIncorrect = {
-                    navController.navigate(Screen.Puzzle.createRoute(1)) {
-                        popUpTo(0) { inclusive = true }
+
+                    navController.navigate(Screen.Puzzle.createRoute(puzzleNumber)) {
+                        popUpTo(Screen.Puzzle.route) { inclusive = false }
                     }
                 },
                 onBack = { navController.popBackStack() }
             )
         }
-        // InicioConsola con dos opciones
+
         composable(Screen.InicioConsola.route) {
             InicioConsolaScreen(
                 onNuevaCarta = { navController.navigate(Screen.NuevaCarta.route) },
@@ -88,9 +110,17 @@ fun Navigation(
             )
         }
 
-        // Nueva Carta (pantalla vacía con botón volver)
+
         composable(Screen.NuevaCarta.route) {
             NuevaCartaScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable(Screen.Translator.route) {
+            TranslatorScreen(navController)
+        }
+        composable("puzzle/3/{stickerResId}") { backStackEntry ->
+            val stickerResId = backStackEntry.arguments?.getString("stickerResId")?.toIntOrNull() ?: 0
+            PuzzleLevelThree(navController = navController, stickerResId = stickerResId)
         }
 
     }

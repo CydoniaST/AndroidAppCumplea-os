@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.androidx.ui.geometry)
     implementation(libs.ui.graphics)
+    implementation(libs.translate)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

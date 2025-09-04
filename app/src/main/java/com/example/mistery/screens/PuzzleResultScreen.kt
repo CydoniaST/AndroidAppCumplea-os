@@ -18,12 +18,13 @@ import com.example.mistery.ui.theme.*
 
 @Composable
 fun PuzzleResultScreen(
+    puzzleNumber: Int,
     correctAnswer: Int = 21091999,
+    correctText: String = "felicidades",
     onCorrect: () -> Unit,
     onIncorrect: () -> Unit,
     onBack: () -> Unit
 ) {
-    // El usuario escribe texto, lo guardamos como String
     var userAnswer by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
 
@@ -37,19 +38,32 @@ fun PuzzleResultScreen(
     ) {
         BackButton(onBack = onBack)
 
-        Text("Código de activación:", fontSize = 20.sp, color = StarWhite)
+        Text(
+            text = if (puzzleNumber == 1) "Código de activación:" else "Traducción:",
+            fontSize = 20.sp,
+            color = StarWhite
+        )
 
         Spacer(Modifier.height(16.dp))
 
         TextField(
             value = userAnswer,
             onValueChange = { input ->
-                // Acepta solo números y máx. 8 dígitos
-                userAnswer = input.filter { it.isDigit() }.take(8)
+                if (puzzleNumber == 1) {
+
+                    userAnswer = input.filter { it.isDigit() }.take(8)
+                } else {
+
+                    userAnswer = input
+                }
                 showError = false
             },
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = if (puzzleNumber == 1) {
+                KeyboardOptions(keyboardType = KeyboardType.Number)
+            } else {
+                KeyboardOptions.Default
+            }
         )
 
         Spacer(Modifier.height(24.dp))
@@ -57,21 +71,30 @@ fun PuzzleResultScreen(
         Button(
             onClick = {
                 showError = false
+                if (puzzleNumber == 1) {
 
-                // Convierte el texto a Int (null si no es válido)
-                val typedInt = userAnswer.toIntOrNull()
-
-                Log.d("PuzzleResult", "typed=$typedInt expected=$correctAnswer")
-
-                if (typedInt == correctAnswer) {
-                    onCorrect()
+                    val typedInt = userAnswer.toIntOrNull()
+                    if (typedInt == correctAnswer) {
+                        onCorrect()
+                    } else {
+                        showError = true
+                    }
                 } else {
-                    showError = true
+
+                    if (userAnswer.trim().equals(correctText, ignoreCase = true)) {
+                        onCorrect()
+                    } else {
+                        showError = true
+                    }
                 }
             },
             colors = ButtonDefaults.buttonColors(containerColor = CosmicBlue)
         ) {
-            Text("Iniciar Consola", color = StarWhite, fontWeight = FontWeight.Bold)
+            Text(
+                if (puzzleNumber == 1) "Iniciar Consola" else "Comprobar",
+                color = StarWhite,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 
@@ -92,10 +115,23 @@ fun PuzzleResultScreen(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, name = "Puzzle 1")
 @Composable
-private fun PreviewPuzzleResultScreen() {
+private fun PreviewPuzzleResultScreenP1() {
     PuzzleResultScreen(
+        puzzleNumber = 1,
+        onCorrect = {},
+        onIncorrect = {},
+        onBack = {}
+    )
+}
+
+@Preview(showBackground = true, name = "Puzzle 2")
+@Composable
+private fun PreviewPuzzleResultScreenP2() {
+    PuzzleResultScreen(
+        puzzleNumber = 2,
+        correctText = "felicidades",
         onCorrect = {},
         onIncorrect = {},
         onBack = {}

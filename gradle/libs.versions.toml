@@ -20,6 +20,15 @@ ui = "1.9.0"
 uiGeometry = "1.9.0"
 uiGraphics = "1.9.0"
 translate = "17.0.3"
+ktorClientCore = "3.2.0"
+ktorClientCio = "3.2.0"
+ktorClientContentNegotiation = "3.2.0"
+ktorSerializationKotlinxJson = "3.2.0"
+ktorClientCioVersion = "2.3.4"
+ktorClientCoreVersion = "2.3.9"
+ktorKtorClientCio = "2.3.9"
+ktorClientContentNegotiationVersion = "2.3.9"
+ktorSerializationKotlinxJsonVersion = "2.3.9"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +57,15 @@ ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
 androidx-ui-geometry = { group = "androidx.compose.ui", name = "ui-geometry", version.ref = "uiGeometry" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "uiGraphics" }
 translate = { group = "com.google.mlkit", name = "translate", version.ref = "translate" }
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktorClientCore" }
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktorClientCio" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktorClientContentNegotiation" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktorSerializationKotlinxJson" }
+ktor-ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktorClientCioVersion" }
+ktor-ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktorClientCoreVersion" }
+io-ktor-ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktorKtorClientCio" }
+ktor-ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktorClientContentNegotiationVersion" }
+ktor-ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktorSerializationKotlinxJsonVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

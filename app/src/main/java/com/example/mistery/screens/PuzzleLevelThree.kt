@@ -81,7 +81,7 @@ fun PuzzleLevelThree(navController: NavController, stickerResId: Int? = null) {
                                 message = item,
                                 isUser = item.startsWith("👩‍🚀")
                             )
-                            is Int -> Row( // el sticker
+                            is Int -> Row(
                                 horizontalArrangement = Arrangement.End,
                                 modifier = Modifier.fillMaxWidth()
                             ) {

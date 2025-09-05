@@ -2,9 +2,11 @@ package com.example.mistery.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.mistery.screens.InicioConsolaScreen
 import com.example.mistery.screens.NuevaCartaScreen
 import com.example.mistery.screens.PuzzleLevelThree
@@ -17,7 +19,9 @@ import com.example.mistery.screens.ConfettiScreen
 
 
 sealed class Screen(val route: String) {
-    object Welcome : Screen("welcome")
+    object Welcome : Screen("welcome?showSecret={showSecret}") {
+        fun createRoute(showSecret: Boolean = false) = "welcome?showSecret=$showSecret"
+    }
     object Puzzle : Screen("puzzle/{puzzleNumber}") {
         fun createRoute(puzzleNumber: Int) = "puzzle/$puzzleNumber"
     }
@@ -40,16 +44,23 @@ fun Navigation(
         startDestination = Screen.Welcome.route
     ) {
         // Pantalla de bienvenida
-        composable(Screen.Welcome.route) {
+        composable(
+            route = Screen.Welcome.route,
+            arguments = listOf(
+                navArgument("showSecret") {
+                    type = NavType.BoolType
+                    defaultValue = false
+                }
+            )
+        ) { backStackEntry ->
+            val showSecret = backStackEntry.arguments?.getBoolean("showSecret") ?: false
             WelcomeScreen(
                 onNavigateToPuzzle = {
                     navController.navigate(Screen.Puzzle.createRoute(1)) {
-                        // Quitar welcome del back stack
-                        popUpTo(Screen.Welcome.route) {
-                            inclusive = true
-                        }
+                        popUpTo(Screen.Welcome.route) { inclusive = true }
                     }
-                }
+                },
+                showSecret = showSecret
             )
         }
 

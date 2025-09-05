@@ -36,7 +36,7 @@ fun PuzzleLevelOne() {
         los radares de la nave.
         Y es que hace ya 1 mes que partimos de la Tierra en busca de vida, hemos recorrido miles de años luz pero no hemos encontrado nada aún. 
         
-        Ahora que todo esta en orden hay que reiniciar la consola de la nave, pero no encuentro el codigo de activación 
+        Ahora que todo está en orden hay que reiniciar la consola de la nave, pero no encuentro el codigo de activación 
         de la consola principal.      
         
         Entrada X-039899
@@ -89,7 +89,7 @@ fun PuzzleLevelOne() {
             Canvas(
                 modifier = Modifier
                     .offset { IntOffset(offsetX1.roundToInt(), offsetY1.roundToInt()) }
-                    .size(320.dp, 300.dp) // la mitad superior
+                    .size(320.dp, 300.dp)
                     .graphicsLayer(alpha = 0.99f)
                     .pointerInput(Unit) {
                         detectDragGestures { change, dragAmount ->
@@ -112,7 +112,7 @@ fun PuzzleLevelOne() {
                     Offset(320f, 35f),   // 1
                     Offset(350f, 35f),   // 0
                     Offset(450f, 35f),   // 9
-                    Offset(410f, 585f)  // 1
+                    Offset(415f, 580f)  // 1
                 )
                 holePositions1.forEach { pos ->
                     drawCircle(
@@ -128,7 +128,7 @@ fun PuzzleLevelOne() {
             Canvas(
                 modifier = Modifier
                     .offset { IntOffset(offsetX2.roundToInt(), offsetY2.roundToInt()) }
-                    .size(320.dp, 300.dp) // la mitad inferior
+                    .size(320.dp, 300.dp)
                     .graphicsLayer(alpha = 0.99f)
                     .pointerInput(Unit) {
                         detectDragGestures { change, dragAmount ->

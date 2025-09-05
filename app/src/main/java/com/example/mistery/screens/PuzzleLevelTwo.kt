@@ -24,73 +24,111 @@ import com.google.mlkit.nl.translate.Translator
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun PuzzleLevelTwo(navController: NavController) {
-    val baseText = """
-        
-    """.trimIndent()
+    val baseText = ""
 
-    val solutionText = """
-        Текст скрытого сообщения
-    """.trimIndent()
-
-    var currentText by remember { mutableStateOf(baseText) }
     var colorFilter by remember { mutableStateOf<ColorFilter?>(null) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black),
+            .background(
+                brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+                    listOf(Color(0xFF0D0D0D), Color(0xFF1A1A2E), Color(0xFF16213E))
+                )
+            )
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-
-        Image(
-            painter = painterResource(id = R.drawable.puzzle_background),
-            contentDescription = "Puzzle Image",
+        Box(
             modifier = Modifier
+                .weight(1f)
                 .fillMaxWidth()
-                .weight(1f),
-            colorFilter = colorFilter
-        )
-
-        Text(
-            text = currentText,
-            fontSize = 18.sp,
-            color = StarWhite,
-            modifier = Modifier.padding(16.dp)
-        )
+                .padding(8.dp)
+                .background(Color.Black.copy(alpha = 0.3f), RoundedCornerShape(16.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.puzzle_background),
+                contentDescription = "Puzzle Image",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
+                colorFilter = colorFilter
+            )
+        }
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(bottom = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Button(onClick = { colorFilter = greenFilter() }) {
-                    Text("Verde")
-                }
-                Button(onClick = { colorFilter = whiteFilter() }) {
-                    Text("Blanco")
-                }
-                Button(onClick = { colorFilter = redFilter() }) {
-                    Text("Rojo")
-                }
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Elige un filtro:",
+                color = Color.White,
+                fontSize = 18.sp,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
 
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.fillMaxWidth()
             ) {
-
+                FilterButton(
+                    text = "Verde",
+                    color = Color(0xFF16DB65),
+                    onClick = {
+                        colorFilter = greenFilter()
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+                FilterButton(
+                    text = "Blanco",
+                    color = Color(0xFFF5F5F5),
+                    onClick = {
+                        colorFilter = whiteFilter()
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+                FilterButton(
+                    text = "Rojo",
+                    color = Color(0xFFDB162F),
+                    onClick = {
+                        colorFilter = redFilter()
+                    },
+                    modifier = Modifier.weight(1f)
+                )
             }
         }
     }
 }
+
+@Composable
+fun FilterButton(
+    text: String,
+    color: Color,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Button(
+        onClick = onClick,
+        shape = RoundedCornerShape(12.dp),
+        modifier = modifier.padding(horizontal = 4.dp),
+        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+            containerColor = color.copy(alpha = 0.85f),
+            contentColor = Color.Black
+        )
+    ) {
+        Text(
+            text = text,
+            fontSize = 16.sp,
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+        )
+    }
+}
+
+
 fun redFilter(): ColorFilter {
 
     val matrix = floatArrayOf(
@@ -116,10 +154,10 @@ fun greenFilter(): ColorFilter {
 fun whiteFilter(): ColorFilter {
 
     val matrix = floatArrayOf(
-        1f, 0f, 0f, 0f, 0f,  // rojo
-        0f, 1f, 0f, 0f, 0f,  // verde
-        0f, 0f, 1f, 0f, 0f,  // azul
-        0f, 0f, 0f, 1f, 0f   // alfa
+        1f, 0f, 0f, 0f, 0f,
+        0f, 1f, 0f, 0f, 0f,
+        0f, 0f, 1f, 0f, 0f,
+        0f, 0f, 0f, 1f, 0f
     )
     return ColorFilter.colorMatrix(androidx.compose.ui.graphics.ColorMatrix(matrix))
 }
